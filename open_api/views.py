@@ -41,7 +41,7 @@ def blog_by_id_id(request, source_id, blog_id):
     return HttpResponse('blog not found')
 
   res = requests.get(the_blog)
-  res = res.text()
+  res = res.text
   return HttpResponse(res)
   # try:
   #   res = requests.get(the_blog)
