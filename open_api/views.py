@@ -11,19 +11,20 @@ def all_blog(request):
   for source in sources:
     if source['type'] == 'github':
       blogs += api_util.getBlogFromGithub(source)
-  
+
   return HttpResponse(json.dumps(blogs))
 
 def blog_by_id(request, source_id):
   qs = OpenBlog.objects.filter(blog_id=source_id)
   if len(qs) == 0:
+    print("there is no blog with id" + str(source_id))
     return HttpResponse(json.dumps([]))
-  the_source = qs[0]
-  blogs = api_util.getBlogFromGithub(the_source)
-  return HttpResponse(json.dumps(blogs))
+  the_source_info = json.loads(qs[0].blog_info)
+  blogs = api_util.getBlogFromGithub(the_source_info)
+  return HttpResponse(json.dumps(blogs, ensure_ascii=False))
 
 
 def all_source(request):
   sources = source_util.all_sources_with_index()
-  
+
   return HttpResponse(json.dumps(sources))

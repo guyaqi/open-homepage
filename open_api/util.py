@@ -7,7 +7,7 @@ def getBlogFromGithub(info):
   using = info.get('use')
   if using is None:
     using = True
-  
+
   if not using:
     return []
 
@@ -15,7 +15,7 @@ def getBlogFromGithub(info):
   if name is None:
     print('repo name missed')
     return []
-  
+
   # 获取分支
   branch = info.get('branch')
   if branch is None:
@@ -25,7 +25,7 @@ def getBlogFromGithub(info):
   openfile = info.get('openfile')
   if openfile is None:
     openfile = 'open.yml'
-  
+
   openfile_full_path = f'https://raw.githubusercontent.com/{name}/{branch}/{openfile}'
   # print(openfile_full_path)
   # https://raw.githubusercontent.com/guyaqi/openBlogEx1/master/open.yml
@@ -34,6 +34,7 @@ def getBlogFromGithub(info):
     res = requests.get(openfile_full_path)
     res = res.text
     open_rule = yaml.load(res)
+    print(open_rule)
   except Exception as e:
     print(f'{openfile_full_path} 读取失败')
     return []
