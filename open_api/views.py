@@ -12,3 +12,8 @@ def all_blog(request):
       blogs += api_util.getBlogFromGithub(source)
   
   return HttpResponse(json.dumps(blogs))
+
+def all_source(request):
+  sources = source_util.all_sources_with_index()
+  
+  return HttpResponse(json.dumps(sources))

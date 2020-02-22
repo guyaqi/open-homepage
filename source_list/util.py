@@ -35,3 +35,14 @@ def all_sources():
     v.append(json.loads(item.blog_info))
   
   return v
+
+def all_sources_with_index():
+  qs = OpenBlog.objects.all()
+  v = []
+  for item in qs:
+    v.append({
+      'id': item.blog_id,
+      'info': json.loads(item.blog_info)
+    })
+  
+  return v
