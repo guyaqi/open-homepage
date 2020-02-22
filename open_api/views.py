@@ -45,4 +45,3 @@ def blog_by_id_id(request, source_id, blog_id):
     return HttpResponse(res)
   except Exception as e:
     return HttpResponse('get blog failed')
->>>>>>> 57262e128b7da1c782085c05291b917098f1ba5d
