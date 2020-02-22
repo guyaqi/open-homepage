@@ -31,9 +31,10 @@ def all_source(request):
 def blog_by_id_id(request, source_id, blog_id):
   qs = OpenBlog.objects.filter(blog_id=source_id)
   if len(qs) == 0:
+    print("there is no blog with id" + str(source_id))
     return HttpResponse(json.dumps([]))
-  the_source = qs[0]
-  blogs = api_util.getBlogFromGithub(the_source)
+  the_source_info = json.loads(qs[0].blog_info)
+  blogs = api_util.getBlogFromGithub(the_source_info)
   try:
     the_blog = blogs[blog_id]
   except IndexError as e:
