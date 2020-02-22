@@ -40,9 +40,12 @@ def blog_by_id_id(request, source_id, blog_id):
   except IndexError as e:
     return HttpResponse('blog not found')
 
-  try:
-    res = requests.get(the_blog)
-    res = res.text()
-    return HttpResponse(res)
-  except Exception as e:
-    return HttpResponse('get blog failed')
+  res = requests.get(the_blog)
+  res = res.text()
+  return HttpResponse(res)
+  # try:
+  #   res = requests.get(the_blog)
+  #   res = res.text()
+  #   return HttpResponse(res)
+  # except Exception as e:
+  #   return HttpResponse('get blog failed')
